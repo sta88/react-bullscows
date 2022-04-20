@@ -127,6 +127,12 @@ const Game = () => {
             setError(err1);
         }
     }
+
+    const handleKeyClick = (e) => {
+        if (e.keyCode === 13) {
+            handleClick();
+        }
+    };
     
     const moves = historyList.map((step, move) => {
         return (
@@ -147,21 +153,25 @@ const Game = () => {
                             value={inputs.input1}
                             inputs={inputs}
                             setInputs={setInputs}
+                            onKeyDown={handleKeyClick}
                         />
                         <Cell name='input2'
                             value={inputs.input2}
                             inputs={inputs}
                             setInputs={setInputs}
+                            onKeyDown={handleKeyClick}
                         />
                         <Cell name='input3'
                             value={inputs.input3}
                             inputs={inputs}
                             setInputs={setInputs}
+                            onKeyDown={handleKeyClick}
                         />
                         <Cell name='input4'
                             value={inputs.input4}
                             inputs={inputs}
                             setInputs={setInputs}
+                            onKeyDown={handleKeyClick}
                         />
                     </div>
                     <br />
