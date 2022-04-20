@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Cell from "../Cell/Cell";
 import Button from "../Button/Button";
 
@@ -20,28 +20,14 @@ const Game = () => {
         input2: '',
         input3: '',
         input4: '',
-    });
+    });  
+    const [gamesQuantity, setGamesQuantity] = useState(0);
     
-    const handleInput = (e) => {
-        validateInput(e);
-    }
-
-    const validateInput = (e) => {
-        let name = e.target.name;
-        
-        if (e.target.value >= 0 && e.target.value <= 9 && e.target.value !== ' ') {
-            setInputs({
-                ...inputs,
-                [name]: e.target.value
-            }
-            );
-        } else {
-            setInputs({
-                ...inputs,
-                [name]: ''
-            });
-        };
-    }    
+    useEffect(() => {    
+        if (gamesQuantity !== 0) {   
+            document.querySelector('input[name=input1]').focus();
+        }
+    }, [gamesQuantity]);
 
     const validateEquals = (arr) => {
         const map = new Map();
@@ -85,6 +71,9 @@ const Game = () => {
             input3: '',
             input4: '',
         });
+        let gq = gamesQuantity;
+        gq++;
+        setGamesQuantity(gq);
     }
 
     const checkBullsCows = (arr, arrX) => {
@@ -156,19 +145,23 @@ const Game = () => {
                     <div className="board-row">
                         <Cell name='input1'
                             value={inputs.input1}
-                            onChange={handleInput}
+                            inputs={inputs}
+                            setInputs={setInputs}
                         />
                         <Cell name='input2'
                             value={inputs.input2}
-                            onChange={handleInput}
+                            inputs={inputs}
+                            setInputs={setInputs}
                         />
                         <Cell name='input3'
                             value={inputs.input3}
-                            onChange={handleInput}
+                            inputs={inputs}
+                            setInputs={setInputs}
                         />
                         <Cell name='input4'
                             value={inputs.input4}
-                            onChange={handleInput}
+                            inputs={inputs}
+                            setInputs={setInputs}
                         />
                     </div>
                     <br />
